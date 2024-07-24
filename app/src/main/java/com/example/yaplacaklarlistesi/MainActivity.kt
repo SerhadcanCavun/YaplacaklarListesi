@@ -8,10 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yaplacaklarlistesi.Adapter.AdapterTask
 
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+
 class MainActivity : AppCompatActivity() {
+    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
     private lateinit var taskItemTest: List<TaskItem>
     private lateinit var taskAdapter: AdapterTask
     private lateinit var recyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
