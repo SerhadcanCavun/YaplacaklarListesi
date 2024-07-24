@@ -28,6 +28,13 @@ class MainActivity : AppCompatActivity() {
                 TaskItem("b",true),
                 TaskItem("c",true),
                 TaskItem("d",true),
+                TaskItem("d",true),
+                TaskItem("d",true),
+                TaskItem("d",true),
+                TaskItem("d",true),
+                TaskItem("d",true),
+                TaskItem("d",true),
+                TaskItem("d",true)
             )
 
 
