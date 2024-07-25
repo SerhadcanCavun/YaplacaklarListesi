@@ -1,4 +1,5 @@
-# Add project specific ProGuard rules here.
+-keep class androidx.room.RoomDatabase { *; }
+-keep class androidx.sqlite.db.SupportSQLiteOpenHelper { *; }# Add project specific ProGuard rules here.
 # You can control the set of applied configuration files using the
 # proguardFiles setting in build.gradle.
 #
