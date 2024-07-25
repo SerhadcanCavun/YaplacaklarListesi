@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">YapılacaklarListesi</string>
     <string name="string_todo">To Do List</string>
+    <string name="string_notes">Notes</string>
 </resources>
