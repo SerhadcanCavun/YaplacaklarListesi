@@ -34,8 +34,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-         // Ensure the database is initialized
-
         editText = findViewById(R.id.edit_text_message)
         imageView = findViewById(R.id.button_image)
 

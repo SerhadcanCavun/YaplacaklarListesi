@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">YapılacaklarListesi</string>
+    <string name="logo_description">Logo</string>
     <string name="string_todo">To Do List</string>
+    <string name="login_id">Login ID</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>
