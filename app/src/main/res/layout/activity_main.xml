@@ -63,6 +63,7 @@
                 />
 
             <ImageView
+                android:id="@+id/button_image"
                 android:layout_width="46dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/baseline_add_24" />

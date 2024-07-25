@@ -1,16 +1,11 @@
 package com.example.yaplacaklarlistesi.Database
 
-import android.app.Application
-import com.example.yaplacaklarlistesi.database.AppDatabase
+import android.content.Context
 
-class InitDb : Application() {
-    companion object {
-        lateinit var appDatabase: AppDatabase
-            private set
-    }
+object InitDb {
+    lateinit var appDatabase: AppDatabase
 
-    override fun onCreate() {
-        super.onCreate()
-        appDatabase = AppDatabase.getDatabase(this)
+    fun initialize(context: Context) {
+        appDatabase = AppDatabase.getDatabase(context)
     }
 }
