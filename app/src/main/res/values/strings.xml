@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YapılacaklarListesi</string>
+    <string name="app_name">Notepad</string>
     <string name="string_todo">To Do List</string>
     <string name="logo_description">Logo</string>
     <string name="login_id">Login ID</string>

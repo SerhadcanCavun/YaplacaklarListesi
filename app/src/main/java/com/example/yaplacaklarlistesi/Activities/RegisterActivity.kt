@@ -1,4 +1,4 @@
-package com.example.yaplacaklarlistesi
+package com.example.yaplacaklarlistesi.Activities
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.yaplacaklarlistesi.DAO.UserDAO
 import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.Model.User
+import com.example.yaplacaklarlistesi.R
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 

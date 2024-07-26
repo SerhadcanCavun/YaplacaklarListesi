@@ -1,4 +1,4 @@
-package com.example.yaplacaklarlistesi
+package com.example.yaplacaklarlistesi.Activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.yaplacaklarlistesi.Adapter.AdapterTask
 import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.Model.Task
+import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.UserState.currentUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

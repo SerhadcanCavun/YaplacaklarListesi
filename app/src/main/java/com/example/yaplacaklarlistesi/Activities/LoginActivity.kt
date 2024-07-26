@@ -1,4 +1,4 @@
-package com.example.yaplacaklarlistesi
+package com.example.yaplacaklarlistesi.Activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yaplacaklarlistesi.DAO.UserDAO
 import com.example.yaplacaklarlistesi.Database.InitDb
+import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.UserState.currentUser
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
