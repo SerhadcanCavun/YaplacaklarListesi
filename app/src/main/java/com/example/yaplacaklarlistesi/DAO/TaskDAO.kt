@@ -18,8 +18,8 @@ interface TaskDAO {
     @Delete
     fun delete(task: Task)
 
-    @Query("SELECT * FROM task_table WHERE task_text = :text")
-    fun getTaskById(text: String?): Task?
+    @Query("SELECT id, task_text, task_boolean FROM task_table WHERE task_user = :user")
+    fun getTaskById(user: String?): List<Task>
 
     @Query("SELECT * FROM task_table")
     fun getAllTasks(): List<Task>

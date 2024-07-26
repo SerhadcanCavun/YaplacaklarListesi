@@ -1,5 +1,6 @@
 package com.example.yaplacaklarlistesi
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.yaplacaklarlistesi.Adapter.AdapterTask
 import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.Model.Task
+import com.example.yaplacaklarlistesi.UserState.currentUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var imageView: ImageView
     lateinit var editText: EditText
+    lateinit var imageBack: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         editText = findViewById(R.id.edit_text_message)
         imageView = findViewById(R.id.button_image)
+        imageBack = findViewById(R.id.imageBack)
 
         taskItems = mutableListOf()
 
@@ -52,12 +56,16 @@ class MainActivity : AppCompatActivity() {
                 addTask(taskText)
             }
         }
+
+        imageBack.setOnClickListener {
+            backToLoginScreen()
+        }
     }
 
     private fun loadTasks() {
         lifecycleScope.launch {
             val tasks = withContext(Dispatchers.IO) {
-                InitDb.appDatabase.taskDao().getAllTasks()
+                InitDb.appDatabase.taskDao().getTaskById(currentUser)
             }
             taskItems.addAll(tasks)
             taskAdapter.notifyDataSetChanged()
@@ -65,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addTask(taskText: String) {
-        val task = Task(task_text = "df", task_boolean = true).apply {
+        val task = Task(task_user = currentUser, task_text = "df", task_boolean = true).apply {
             task_text = taskText
             task_boolean = false
         }
@@ -78,5 +86,11 @@ class MainActivity : AppCompatActivity() {
             taskAdapter.notifyItemInserted(taskItems.size - 1)
             editText.text.clear()
         }
+    }
+
+    private fun backToLoginScreen() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

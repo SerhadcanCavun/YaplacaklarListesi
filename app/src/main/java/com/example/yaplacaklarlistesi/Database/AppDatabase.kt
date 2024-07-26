@@ -4,14 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.yaplacaklarlistesi.DAO.TaskDAO
-import com.example.yaplacaklarlistesi.DAO.UserDao
+import com.example.yaplacaklarlistesi.DAO.UserDAO
 import com.example.yaplacaklarlistesi.Model.Task
+import com.example.yaplacaklarlistesi.Model.User
 
-@Database(entities = [Task::class], version = 1, exportSchema = false)
+@Database(entities = [Task::class, User::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDAO
-    abstract fun userDao(): UserDao
+    abstract fun userDao(): UserDAO
 
     companion object {
         @Volatile
@@ -23,10 +26,18 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     DbConfig.ROOM_DATABASE
-                ).build()
+                ).addMigrations(MIGRATION_1_2)
+                .build()
                 INSTANCE = instance
                 instance
             }
         }
+
+        val MIGRATION_1_2: Migration = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE task_table ADD COLUMN task_user TEXT")
+            }
+        }
+
     }
 }
