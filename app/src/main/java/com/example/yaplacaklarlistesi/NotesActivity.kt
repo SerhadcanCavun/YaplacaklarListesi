@@ -1,6 +1,7 @@
 package com.example.yaplacaklarlistesi
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -13,6 +14,7 @@ import com.example.yaplacaklarlistesi.ViewModels.NotesViewModel
 class NotesActivity : AppCompatActivity() {
 
     private lateinit var noteAdapter: AdapterNotes
+    private lateinit var imageViewNotes: ImageView
 
     private val notesViewModel: NotesViewModel by viewModels {
         NotesViewModelFactory((application as MyApplication).repository)

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <EditText
+    android:id="@+id/notes_page_title"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:hint="Write Your Title Here"
+    android:maxLines="2"/>
+    <EditText
+        android:id="@+id/notes_page_body"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:hint="Write your notes here."
+        android:gravity="start"
+        android:maxLines="25" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center">
+    <ImageView
+        android:id="@+id/button_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:src ="@drawable/baseline_add_24"
+        app:layout_constraintLeft_toLeftOf="@id/button_bg"
+        app:layout_constraintBottom_toBottomOf="@id/button_bg"
+        android:elevation="1dp"
+        />
+
+        <ImageView
+            android:id="@+id/button_bg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/circle_drawable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>
