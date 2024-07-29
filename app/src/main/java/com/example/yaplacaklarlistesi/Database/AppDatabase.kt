@@ -6,15 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.yaplacaklarlistesi.DAO.NotesDAO
 import com.example.yaplacaklarlistesi.DAO.TaskDAO
 import com.example.yaplacaklarlistesi.DAO.UserDAO
+import com.example.yaplacaklarlistesi.Model.Note
 import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.Model.User
 
-@Database(entities = [Task::class, User::class], version = 2, exportSchema = false)
+@Database(entities = [Task::class, User::class, Note::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDAO
     abstract fun userDao(): UserDAO
+    abstract fun notesDao(): NotesDAO
 
     companion object {
         @Volatile
