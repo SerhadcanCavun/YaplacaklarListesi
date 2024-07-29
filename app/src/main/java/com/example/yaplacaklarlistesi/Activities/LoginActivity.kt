@@ -11,14 +11,15 @@ import com.example.yaplacaklarlistesi.DAO.UserDAO
 import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.UserState.currentUser
+import com.google.android.material.textfield.TextInputEditText
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class LoginActivity : AppCompatActivity() {
 
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
-    lateinit var etLoginId: EditText
-    lateinit var etPassword: EditText
+    lateinit var etLoginId: TextInputEditText
+    lateinit var etPassword: TextInputEditText
     lateinit var btnLogin: Button
     lateinit var btnRgstr: Button
     lateinit var userDao: UserDAO
