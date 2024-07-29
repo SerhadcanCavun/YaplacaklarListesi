@@ -10,14 +10,15 @@ import com.example.yaplacaklarlistesi.DAO.UserDAO
 import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.Model.User
 import com.example.yaplacaklarlistesi.R
+import com.google.android.material.textfield.TextInputEditText
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class RegisterActivity : AppCompatActivity() {
 
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
-    lateinit var registerId: EditText
-    lateinit var registerPassword: EditText
+    lateinit var registerId: TextInputEditText
+    lateinit var registerPassword: TextInputEditText
     lateinit var btnRegister: Button
     lateinit var btnExit: Button
     lateinit var userDao: UserDAO
