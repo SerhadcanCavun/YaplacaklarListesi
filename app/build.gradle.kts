@@ -80,4 +80,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha01")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha01")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01")
+    kapt ("androidx.lifecycle:lifecycle-compiler:2.2.0-alpha01")
 }

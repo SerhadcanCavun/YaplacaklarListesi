@@ -13,7 +13,7 @@
         android:layout_width="275dp"
         android:layout_height="60dp"
         android:layout_marginTop="48dp"
-        android:hint="Username"
+        android:hint="@string/usernameHint"
         android:textColorHint="#A7A7A7"
         app:boxStrokeColor="#EAEAEE"
         app:layout_constraintEnd_toEndOf="@+id/imageRegisterLogo"
@@ -36,13 +36,13 @@
         android:layout_width="275dp"
         android:layout_height="60dp"
         android:layout_marginTop="24dp"
-        android:hint="Password"
+        android:hint="@string/passwordHint"
         android:textColorHint="#A7A7A7"
         app:boxStrokeColor="#EAEAEE"
         app:endIconMode="password_toggle"
-        app:layout_constraintEnd_toEndOf="@+id/etLoginField"
-        app:layout_constraintStart_toStartOf="@+id/etLoginField"
-        app:layout_constraintTop_toBottomOf="@+id/etLoginField">
+        app:layout_constraintEnd_toEndOf="@+id/etRegisterField"
+        app:layout_constraintStart_toStartOf="@+id/etRegisterField"
+        app:layout_constraintTop_toBottomOf="@+id/etRegisterField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etRegisterPassword"
@@ -73,7 +73,7 @@
         android:layout_height="128dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/logo_description"
-        android:src="@drawable/login_logo"
+        android:src="@drawable/spiderman"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@+id/register_text"
         app:layout_constraintStart_toStartOf="@+id/register_text"
@@ -86,10 +86,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="@string/register"
-        app:layout_constraintEnd_toEndOf="@+id/etPasswordField"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/etPasswordField"
-        app:layout_constraintTop_toBottomOf="@+id/etPasswordField" />
+        app:layout_constraintEnd_toEndOf="@+id/etRegisterPasswordField"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etRegisterPasswordField"
+        app:layout_constraintTop_toBottomOf="@+id/etRegisterPasswordField" />
 
     <Button
         android:id="@+id/btnExit"

@@ -13,6 +13,12 @@ interface UserDAO {
     @Insert
     fun insert(user: User)
 
+    @Update
+    fun update(user: User)
+
+    @Delete
+    fun delete(user: User)
+
     @Query("SELECT * FROM user_table WHERE login_id = :text")
     fun getUserById(text: String?): User?
 }
