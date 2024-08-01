@@ -1,7 +1,6 @@
 package com.example.yaplacaklarlistesi
 
 import android.app.Application
-import androidx.room.Room
 import com.example.yaplacaklarlistesi.Database.AppDatabase
 import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.Repositories.NotesRepository

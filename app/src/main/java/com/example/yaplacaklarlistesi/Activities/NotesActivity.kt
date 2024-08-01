@@ -1,7 +1,6 @@
-package com.example.yaplacaklarlistesi
+package com.example.yaplacaklarlistesi.Activities
 
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -9,12 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yaplacaklarlistesi.Adapter.AdapterNotes
 import com.example.yaplacaklarlistesi.Factory.NotesViewModelFactory
+import com.example.yaplacaklarlistesi.MyApplication
+import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.ViewModels.NotesViewModel
 
 class NotesActivity : AppCompatActivity() {
 
     private lateinit var noteAdapter: AdapterNotes
-    private lateinit var imageViewNotes: ImageView
 
     private val notesViewModel: NotesViewModel by viewModels {
         NotesViewModelFactory((application as MyApplication).repository)

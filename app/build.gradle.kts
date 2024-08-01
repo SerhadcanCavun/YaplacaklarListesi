@@ -8,6 +8,8 @@ android {
     namespace = "com.example.yaplacaklarlistesi"
     compileSdk = 34
 
+    viewBinding{enable = true}
+
     defaultConfig {
         applicationId = "com.example.yaplacaklarlistesi"
         minSdk = 24

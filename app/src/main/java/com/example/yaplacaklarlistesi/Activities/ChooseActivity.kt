@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.yaplacaklarlistesi.NotesActivity
 import com.example.yaplacaklarlistesi.R
 
 class ChooseActivity: AppCompatActivity() {
@@ -36,7 +35,7 @@ class ChooseActivity: AppCompatActivity() {
     }
 
     private fun openTaskActivity() {
-        val intent = Intent(this@ChooseActivity, MainActivity::class.java)
+        val intent = Intent(this@ChooseActivity, TaskActivity::class.java)
         startActivity(intent)
         finish()
     }

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Notepad</string>
+    <string name="Tamam">OK</string>
     <string name="string_todo">To Do List</string>
     <string name="logo_description">Logo</string>
     <string name="login_id">Login ID</string>
@@ -12,6 +13,9 @@
     <string name="title_activity_notes">NotesActivity</string>
     <string name="usernameHint">Username</string>
     <string name="passwordHint">Password</string>
+    <string name="haveNotAccount">Don\'\t have an account?</string>
+    <string name="haveAccount">Already have an account?</string>
+    <string name="confirmPassword">Confirm Password</string>
 
 
 </resources>

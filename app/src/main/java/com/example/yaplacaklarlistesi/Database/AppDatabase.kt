@@ -29,21 +29,19 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     DbConfig.ROOM_DATABASE
-                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
 
-        // Migration from version 1 to 2: adding a new column to task_table
         val MIGRATION_1_2: Migration = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE task_table ADD COLUMN task_user TEXT")
             }
         }
 
-        // Migration from version 2 to 3: creating a new notes_table
         private val MIGRATION_2_3 = object : Migration(2, 3) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL(
@@ -58,10 +56,9 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        // Placeholder for future migration from version 3 to 4
         private val MIGRATION_3_4 = object : Migration(3, 4) {
             override fun migrate(db: SupportSQLiteDatabase) {
-                // Add migration logic here when upgrading from version 3 to 4
+                db.execSQL("ALTER TABLE user_table ADD COLUMN avatar TEXT")
             }
         }
     }

@@ -91,17 +91,39 @@
         app:layout_constraintStart_toStartOf="@+id/etPasswordField"
         app:layout_constraintTop_toBottomOf="@+id/etPasswordField" />
 
-    <Button
-        android:id="@+id/btnLgnRgstr"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
-        android:text="@string/register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"/>
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:text="@string/haveNotAccount"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/btnLgnRgstr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:text="@string/register"
+                android:textSize="15sp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/azure"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 

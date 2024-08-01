@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/white"
+    android:padding="16dp"
+    android:focusableInTouchMode="true">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etRegisterField"
@@ -54,6 +56,30 @@
             tools:ignore="TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etConfirmpasswordField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/confirmPassword"
+        android:textColorHint="#A7A7A7"
+        app:boxStrokeColor="#EAEAEE"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="@+id/etRegisterPasswordField"
+        app:layout_constraintStart_toStartOf="@+id/etRegisterPasswordField"
+        app:layout_constraintTop_toBottomOf="@+id/etRegisterPasswordField">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#5B5B5B"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:id="@+id/register_text"
         android:layout_width="wrap_content"
@@ -73,7 +99,7 @@
         android:layout_height="128dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/logo_description"
-        android:src="@drawable/spiderman"
+        tools:srcCompat="@tools:sample/avatars"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@+id/register_text"
         app:layout_constraintStart_toStartOf="@+id/register_text"
@@ -84,21 +110,52 @@
         android:id="@+id/btnRegister"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="@string/register"
-        app:layout_constraintEnd_toEndOf="@+id/etRegisterPasswordField"
+        app:layout_constraintEnd_toEndOf="@+id/etConfirmpasswordField"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etRegisterPasswordField"
-        app:layout_constraintTop_toBottomOf="@+id/etRegisterPasswordField" />
+        app:layout_constraintStart_toStartOf="@+id/etConfirmpasswordField"
+        app:layout_constraintTop_toBottomOf="@+id/etConfirmpasswordField" />
 
-    <Button
-        android:id="@+id/btnExit"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
-        android:text="@string/exit"
         app:layout_constraintEnd_toEndOf="@+id/btnRegister"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnRegister"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:text="@string/haveAccount"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/btnRgstrLgn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:text="@string/login"
+                android:textSize="15sp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/azure"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/iconBack"
+        android:layout_width="56dp"
+        android:layout_height="39dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_back2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

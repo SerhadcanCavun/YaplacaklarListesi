@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yaplacaklarlistesi.DAO.UserDAO
@@ -20,8 +22,9 @@ class LoginActivity : AppCompatActivity() {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
     lateinit var etLoginId: TextInputEditText
     lateinit var etPassword: TextInputEditText
+    lateinit var imageView: ImageView
     lateinit var btnLogin: Button
-    lateinit var btnRgstr: Button
+    lateinit var btnRgstr: TextView
     lateinit var userDao: UserDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.etPassword)
         btnLogin = findViewById(R.id.btnLogin)
         btnRgstr = findViewById(R.id.btnLgnRgstr)
+        imageView = findViewById(R.id.imageViewLogo)
 
         userDao =InitDb.appDatabase.userDao()
 
@@ -58,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
 
             runOnUiThread {
                 if(user != null && password == user.password) {
-                    currentUser = loginId
+                    currentUser = user
                     val intent = Intent(this@LoginActivity, ChooseActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -67,7 +71,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun registerScreen() {
