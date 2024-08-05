@@ -31,7 +31,7 @@ class AdapterTask(
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val taskItem = taskItems[position]
         holder.textView.text = taskItem.task_text
-        holder.dateTextView.text = taskItem.task_date.toString()
+        holder.dateTextView.text = taskItem.task_date
         holder.radioButton.isChecked = taskItem.task_boolean ?: false
     }
 }

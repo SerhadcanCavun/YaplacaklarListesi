@@ -11,8 +11,7 @@ data class Task(
     @ColumnInfo(name = "task_user") var task_user: String?,
     @ColumnInfo(name = "task_text") var task_text: String?,
     @ColumnInfo(name = "task_boolean") var task_boolean: Boolean?,
-    @ColumnInfo(name = "task_date") var task_date: Long?,
-    @ColumnInfo(name = "task_time") var task_time: Long?
+    @ColumnInfo(name = "task_date") var task_date: String?
 
 
 )
