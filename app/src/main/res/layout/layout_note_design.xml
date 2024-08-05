@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:inputType="text"
             android:hint="Merhaba Dünya"
-            android:maxLines="1"
+            android:maxLines="3"
             android:padding="16dp"
             />
     </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.yaplacaklarlistesi.Adapter
 
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ class AdapterNotes(
 ) : RecyclerView.Adapter<AdapterNotes.NotesViewHolder>() {
 
     class NotesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val titleTextView: TextView = view.findViewById(R.id.text_message_title)
+        val textViewTitle: TextView = view.findViewById(R.id.text_message_title)
         val textViewBody: TextView = view.findViewById(R.id.text_message_body)
     }
 
@@ -22,19 +23,13 @@ class AdapterNotes(
         return NotesViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
-        val noteItem = noteItems[position]
-        holder.titleTextView.text = noteItem.noteTitle
-        holder.textViewBody.text = noteItem.noteText
-    }
-
     override fun getItemCount(): Int {
         return noteItems.size
     }
 
-    fun updateNotes(notes: List<Note>) {
-        noteItems.clear()
-        noteItems.addAll(notes)
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
+        val noteItem = noteItems[position]
+        holder.textViewBody.text = noteItem.noteText
+        holder.textViewTitle.text = noteItem.noteText
     }
 }

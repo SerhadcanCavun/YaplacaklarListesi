@@ -2,6 +2,7 @@ package com.example.yaplacaklarlistesi.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -25,20 +26,13 @@ class TaskActivity : AppCompatActivity() {
     lateinit var taskAdapter: AdapterTask
     lateinit var recyclerView: RecyclerView
     lateinit var imageView: ImageView
-    lateinit var editText: EditText
     lateinit var imageBack: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_todo)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        editText = findViewById(R.id.edit_text_message)
+        setContentView(R.layout.activity_todo)
+
         imageView = findViewById(R.id.button_image)
         imageBack = findViewById(R.id.imageBack)
 
@@ -52,15 +46,17 @@ class TaskActivity : AppCompatActivity() {
         loadTasks()
 
         imageView.setOnClickListener {
-            val taskText = editText.text.toString()
-            if (taskText.isNotEmpty()) {
-                addTask(taskText)
-            }
+            openAddTaskDialog()
         }
 
         imageBack.setOnClickListener {
             backToLoginScreen()
         }
+    }
+
+    private fun openAddTaskDialog() {
+        val addTaskDialog = AddTaskDialogFragment()
+        addTaskDialog.show(supportFragmentManager, "AddTaskDialog")
     }
 
     private fun loadTasks() {
@@ -69,23 +65,7 @@ class TaskActivity : AppCompatActivity() {
                 InitDb.appDatabase.taskDao().getTaskById(currentUser!!.loginId)
             }
             taskItems.addAll(tasks)
-            taskAdapter.notifyDataSetChanged()
-        }
-    }
-
-    private fun addTask(taskText: String) {
-        val task = Task(task_user = currentUser!!.loginId, task_text = "df", task_boolean = true).apply {
-            task_text = taskText
-            task_boolean = false
-        }
-
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                InitDb.appDatabase.taskDao().insert(task)
-            }
-            taskItems.add(task)
-            taskAdapter.notifyItemInserted(taskItems.size - 1)
-            editText.text.clear()
+            taskAdapter.notifyItemInserted(tasks.size)
         }
     }
 

@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
             runOnUiThread {
                 if(user != null && password == user.password) {
                     currentUser = user
-                    val intent = Intent(this@LoginActivity, ChooseActivity::class.java)
+                    val intent = Intent(this@LoginActivity, TaskActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {

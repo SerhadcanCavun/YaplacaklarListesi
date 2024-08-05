@@ -9,13 +9,14 @@
     <string name="string_notes">Notes</string>
     <string name="register">Register</string>
     <string name="exit">Exit</string>
-    <string name="editHint">To do u2026</string>
+    <string name="editHint">To do…</string>
     <string name="title_activity_notes">NotesActivity</string>
     <string name="usernameHint">Username</string>
     <string name="passwordHint">Password</string>
     <string name="haveNotAccount">Don\'\t have an account?</string>
     <string name="haveAccount">Already have an account?</string>
     <string name="confirmPassword">Confirm Password</string>
+    <string name="save_task">Save Task</string>
 
 
 </resources>

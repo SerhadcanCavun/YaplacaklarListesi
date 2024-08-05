@@ -1,44 +1,79 @@
 package com.example.yaplacaklarlistesi.Activities
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.yaplacaklarlistesi.Adapter.AdapterNotes
-import com.example.yaplacaklarlistesi.Factory.NotesViewModelFactory
-import com.example.yaplacaklarlistesi.MyApplication
+import com.example.yaplacaklarlistesi.Database.InitDb
+import com.example.yaplacaklarlistesi.Model.Note
 import com.example.yaplacaklarlistesi.R
-import com.example.yaplacaklarlistesi.ViewModels.NotesViewModel
+import com.example.yaplacaklarlistesi.databinding.ActivityNotesBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class NotesActivity : AppCompatActivity() {
 
+    private lateinit var noteItems: MutableList<Note>
     private lateinit var noteAdapter: AdapterNotes
-
-    private val notesViewModel: NotesViewModel by viewModels {
-        NotesViewModelFactory((application as MyApplication).repository)
-    }
+    private lateinit var binding: ActivityNotesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notes)
 
-        noteAdapter = AdapterNotes(mutableListOf())
+        binding = ActivityNotesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        recyclerView.adapter = noteAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        noteItems = mutableListOf()
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        noteAdapter = AdapterNotes(noteItems)
+        binding.recyclerView.adapter = noteAdapter
 
-        notesViewModel.allNotes.observe(this, Observer { notes ->
-            notes?.let { noteAdapter.updateNotes(it) }
-        })
+        loadNotes()
+
+        binding.buttonImage.setOnClickListener {
+            val noteText = binding.editNote.text.toString()
+            if (noteText.isNotEmpty()) {
+                addNote(noteText)
+            }
+        }
+
+        binding.imageBack.setOnClickListener {
+            backToLoginScreen()
+        }
+    }
+
+    private fun loadNotes() {
+        lifecycleScope.launch {
+            val notes = withContext(Dispatchers.IO) {
+                InitDb.appDatabase.notesDao().getAllNotes()
+            }
+            noteItems.addAll(notes)
+            noteAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun addNote(noteText: String) {
+        val note = Note(noteTitle = "Merhaba", noteText = "Dunya").apply {
+            this.noteText = noteText
+            this.noteTitle = noteText
+        }
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                InitDb.appDatabase.notesDao().insert(note)
+            }
+            noteItems.add(note)
+            noteAdapter.notifyItemInserted(noteItems.size - 1)
+            binding.editNote.text.clear()
+        }
+    }
+
+    private fun backToLoginScreen() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
-
-
-
-
-
-
-

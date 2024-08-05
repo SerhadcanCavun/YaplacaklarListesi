@@ -7,17 +7,17 @@ import com.example.yaplacaklarlistesi.Model.Note
 @Dao
 interface NotesDAO {
     @Insert
-    suspend fun insert(note: Note)
+    fun insert(note: Note)
 
     @Update
-    suspend fun update(note: Note)
+    fun update(note: Note)
 
     @Delete
-    suspend fun delete(note: Note)
+    fun delete(note: Note)
 
     @Query("SELECT * FROM notes_table WHERE note_title = :title")
     fun getNoteByTitle(title: String?): Note?
 
     @Query("SELECT * FROM notes_table")
-    fun getAllNotes(): LiveData<List<Note>>
+    fun getAllNotes(): List<Note>
 }

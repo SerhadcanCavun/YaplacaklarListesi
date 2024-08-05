@@ -16,6 +16,7 @@ class AdapterTask(
     class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val radioButton: RadioButton = view.findViewById(R.id.radioButton)
         val textView: TextView = view.findViewById(R.id.textView)
+        val dateTextView: TextView = view.findViewById(R.id.dateTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -30,6 +31,7 @@ class AdapterTask(
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val taskItem = taskItems[position]
         holder.textView.text = taskItem.task_text
+        holder.dateTextView.text = taskItem.task_date.toString()
         holder.radioButton.isChecked = taskItem.task_boolean ?: false
     }
 }
