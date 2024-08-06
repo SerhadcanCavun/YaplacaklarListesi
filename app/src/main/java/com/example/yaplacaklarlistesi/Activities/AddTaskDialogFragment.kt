@@ -17,14 +17,12 @@ import com.example.yaplacaklarlistesi.UserState.currentUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 class AddTaskDialogFragment : DialogFragment() {
     private var date: String? = null
     private var time: String? = null
+    private var globalTaskText: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,15 +34,15 @@ class AddTaskDialogFragment : DialogFragment() {
         val buttonSave: Button = view.findViewById(R.id.buttonSave)
 
         buttonSave.setOnClickListener {
-            val taskText = editTextTask.text.toString()
-            showDatePicker(taskText)
+            globalTaskText = editTextTask.text.toString()
+            showDatePicker()
         }
         return view
     }
 
-    private fun addTask(taskText: String) {
+    private fun addTask() {
        val task = Task(task_user = currentUser!!.loginId, task_text = "df", task_boolean = false, task_date = "aa").apply {
-           task_text = taskText
+           task_text = globalTaskText
            task_date = "$date $time"
        }
 
@@ -52,17 +50,18 @@ class AddTaskDialogFragment : DialogFragment() {
            withContext(Dispatchers.IO) {
                InitDb.appDatabase.taskDao().insert(task)
            }
+           dismiss()
        }
     }
 
-    private fun showDatePicker(taskText: String) {
+    private fun showDatePicker() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay -> date = "$selectedYear-${selectedMonth + 1}-$selectedDay"
-            showTimePicker(taskText)
+            showTimePicker()
         }, year, month, day)
 
 
@@ -70,13 +69,13 @@ class AddTaskDialogFragment : DialogFragment() {
         datePickerDialog.show()
     }
 
-    private fun showTimePicker(taskText: String) {
+    private fun showTimePicker() {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
 
         val timePickerDialog = TimePickerDialog(requireContext(), { _, selectedHour, selectedMinute -> time = "$selectedHour:$selectedMinute"
-            addTask(taskText)
+            addTask()
         }, hour, minute, true)
 
         timePickerDialog.show()

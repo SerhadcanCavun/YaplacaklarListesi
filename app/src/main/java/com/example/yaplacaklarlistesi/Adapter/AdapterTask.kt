@@ -13,6 +13,8 @@ class AdapterTask(
     private var taskItems: MutableList<Task>
 ) : RecyclerView.Adapter<AdapterTask.TaskViewHolder>() {
 
+    private var isTaskDone = false
+
     class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val radioButton: RadioButton = view.findViewById(R.id.radioButton)
         val textView: TextView = view.findViewById(R.id.textView)
@@ -33,5 +35,15 @@ class AdapterTask(
         holder.textView.text = taskItem.task_text
         holder.dateTextView.text = taskItem.task_date
         holder.radioButton.isChecked = taskItem.task_boolean ?: false
+
+        holder.radioButton.setOnClickListener {
+            if(!isTaskDone) {
+                holder.radioButton.isChecked = true
+                isTaskDone = true
+            } else {
+                holder.radioButton.isChecked = false
+                isTaskDone = false
+            }
+        }
     }
 }

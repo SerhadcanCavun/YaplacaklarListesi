@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.yaplacaklarlistesi.DAO.UserDAO
 import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.Model.User
-import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.UserInformationState
+import com.example.yaplacaklarlistesi.databinding.ActivityRegisterBinding
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import com.example.yaplacaklarlistesi.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
 

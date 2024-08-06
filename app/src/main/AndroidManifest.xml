@@ -18,18 +18,13 @@
             android:exported="false" />
         <activity
             android:name=".Activities.NotesActivity"
-            android:exported="false"
-            android:label="@string/title_activity_notes"
-            android:theme="@style/Theme.YapılacaklarListesi" />
+            android:exported="false" />
         <activity
             android:name=".Activities.TaskActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.RegisterActivity"
             android:exported="false"/>
-        <activity
-            android:name=".Activities.ChooseActivity"
-            android:exported="false" />
         <activity
             android:name=".Activities.LoginActivity"
             android:exported="true"

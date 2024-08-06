@@ -2,13 +2,8 @@ package com.example.yaplacaklarlistesi.Activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +12,7 @@ import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.UserState.currentUser
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -25,7 +21,7 @@ class TaskActivity : AppCompatActivity() {
     lateinit var taskItems: MutableList<Task>
     lateinit var taskAdapter: AdapterTask
     lateinit var recyclerView: RecyclerView
-    lateinit var imageView: ImageView
+    lateinit var imageView: FloatingActionButton
     lateinit var imageBack: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {

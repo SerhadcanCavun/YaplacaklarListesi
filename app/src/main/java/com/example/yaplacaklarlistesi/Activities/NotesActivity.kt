@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yaplacaklarlistesi.Adapter.AdapterNotes
 import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.Model.Note
-import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.databinding.ActivityNotesBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
