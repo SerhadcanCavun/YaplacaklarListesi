@@ -10,7 +10,6 @@ import com.example.yaplacaklarlistesi.Database.InitDb
 import com.example.yaplacaklarlistesi.Interface.ImageStatusListener
 import com.example.yaplacaklarlistesi.Model.Avatar
 import com.example.yaplacaklarlistesi.R
-import com.example.yaplacaklarlistesi.UserState.currentUser
 import com.example.yaplacaklarlistesi.databinding.ActivityAvatarBinding
 
 class AvatarActivity : AppCompatActivity(), ImageStatusListener {

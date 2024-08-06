@@ -13,6 +13,12 @@ class AdapterTask(
     private var taskItems: MutableList<Task>
 ) : RecyclerView.Adapter<AdapterTask.TaskViewHolder>() {
 
+    fun updateTasks(newTasks: List<Task>) {
+        taskItems.clear()
+        taskItems.addAll(newTasks)
+        notifyDataSetChanged()
+    }
+
     private var isTaskDone = false
 
     class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,7 +43,7 @@ class AdapterTask(
         holder.radioButton.isChecked = taskItem.task_boolean ?: false
 
         holder.radioButton.setOnClickListener {
-            if(!isTaskDone) {
+            if (!isTaskDone) {
                 holder.radioButton.isChecked = true
                 isTaskDone = true
             } else {

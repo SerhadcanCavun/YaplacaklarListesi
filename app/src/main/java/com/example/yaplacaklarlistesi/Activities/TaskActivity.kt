@@ -2,67 +2,62 @@ package com.example.yaplacaklarlistesi.Activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.yaplacaklarlistesi.Adapter.AdapterTask
-import com.example.yaplacaklarlistesi.Database.InitDb
-import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.R
-import com.example.yaplacaklarlistesi.UserState.currentUser
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.yaplacaklarlistesi.ViewModel.TaskViewModel
+import com.example.yaplacaklarlistesi.Factory.TaskViewModelFactory
+import com.example.yaplacaklarlistesi.Model.Task
+import com.example.yaplacaklarlistesi.MyApplication
+import com.example.yaplacaklarlistesi.databinding.ActivityTaskBinding
 
 class TaskActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityTaskBinding
     lateinit var taskItems: MutableList<Task>
     lateinit var taskAdapter: AdapterTask
-    lateinit var recyclerView: RecyclerView
-    lateinit var imageView: FloatingActionButton
-    lateinit var imageBack: ImageView
+
+    private val taskViewModel: TaskViewModel by viewModels {
+        TaskViewModelFactory((application as MyApplication).taskRepository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_task)
 
-        setContentView(R.layout.activity_todo)
+        binding = ActivityTaskBinding.inflate(layoutInflater)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        taskAdapter = AdapterTask(mutableListOf())
+        binding.recyclerView.adapter = taskAdapter
 
-        imageView = findViewById(R.id.button_image)
-        imageBack = findViewById(R.id.imageBack)
-
-        taskItems = mutableListOf()
-
-        recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        taskAdapter = AdapterTask(taskItems)
-        recyclerView.adapter = taskAdapter
-
-        loadTasks()
-
-        imageView.setOnClickListener {
+        binding.buttonImage.setOnClickListener {
             openAddTaskDialog()
         }
 
-        imageBack.setOnClickListener {
+        binding.imageBack.setOnClickListener {
             backToLoginScreen()
         }
+        taskViewModel.tasks.observe(this, Observer { tasks ->
+            tasks?.let {
+                taskItems.clear()
+                taskItems.addAll(it)
+                taskAdapter.notifyDataSetChanged()
+            }
+        })
+
+        taskViewModel.taskAddedEvent.observe(this, Observer { event ->
+            if (event) {
+                taskViewModel.loadTasks()
+                taskViewModel.resetTaskAddedEvent()
+            }
+        })
     }
 
     private fun openAddTaskDialog() {
         val addTaskDialog = AddTaskDialogFragment()
         addTaskDialog.show(supportFragmentManager, "AddTaskDialog")
-    }
-
-    private fun loadTasks() {
-        lifecycleScope.launch {
-            val tasks = withContext(Dispatchers.IO) {
-                InitDb.appDatabase.taskDao().getTaskById(currentUser!!.loginId)
-            }
-            taskItems.addAll(tasks)
-            taskAdapter.notifyItemInserted(tasks.size)
-        }
     }
 
     private fun backToLoginScreen() {
