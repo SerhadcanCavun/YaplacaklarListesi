@@ -13,7 +13,7 @@ import com.example.yaplacaklarlistesi.Model.Note
 import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.Model.User
 
-@Database(entities = [Task::class, User::class, Note::class], version = 5, exportSchema = false)
+@Database(entities = [Task::class, User::class, Note::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDAO
     abstract fun userDao(): UserDAO

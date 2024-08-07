@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.yaplacaklarlistesi.Adapter.AdapterAvatars
 import com.example.yaplacaklarlistesi.DAO.UserDAO
 import com.example.yaplacaklarlistesi.Database.InitDb
-import com.example.yaplacaklarlistesi.Interface.ImageStatusListener
+import com.example.yaplacaklarlistesi.interfaces.ImageStatusListener
 import com.example.yaplacaklarlistesi.Model.Avatar
 import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.databinding.ActivityAvatarBinding
@@ -42,7 +42,26 @@ class AvatarActivity : AppCompatActivity(), ImageStatusListener {
             Avatar(R.drawable.avatar6),
             Avatar(R.drawable.avatar7),
             Avatar(R.drawable.avatar8),
-            Avatar(R.drawable.spiderman)
+            Avatar(R.drawable.spiderman),
+            Avatar(R.drawable.varlik_1),
+            Avatar(R.drawable.varlik_2),
+            Avatar(R.drawable.varlik_3),
+            Avatar(R.drawable.varlik_5),
+            Avatar(R.drawable.varlik_6),
+            Avatar(R.drawable.varlik_7),
+            Avatar(R.drawable.varlik_8),
+            Avatar(R.drawable.varlik_9),
+            Avatar(R.drawable.varlik_10),
+            Avatar(R.drawable.varlik_11),
+            Avatar(R.drawable.varlik_12),
+            Avatar(R.drawable.varlik_13),
+            Avatar(R.drawable.varlik_14),
+            Avatar(R.drawable.varlik_15),
+            Avatar(R.drawable.varlik_16),
+            Avatar(R.drawable.varlik_17),
+            Avatar(R.drawable.varlik_18),
+            Avatar(R.drawable.varlik_19),
+            Avatar(R.drawable.varlik_20)
         )
         val adapterAvatars = AdapterAvatars(this, avatars, this)
         binding.avatarRecyclerView.adapter = adapterAvatars

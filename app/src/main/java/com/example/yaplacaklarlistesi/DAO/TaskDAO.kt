@@ -10,17 +10,14 @@ import com.example.yaplacaklarlistesi.Model.Task
 @Dao
 interface TaskDAO {
     @Insert
-    fun insert(task: Task)
+    suspend fun insert(task: Task)
 
     @Update
-    fun update(task: Task)
+    suspend fun update(task: Task)
 
     @Delete
-    fun delete(task: Task)
+    suspend fun delete(task: Task)
 
-    @Query("SELECT id, task_text, task_date, task_boolean FROM task_table WHERE task_user = :user")
-    fun getTaskById(user: String?): List<Task>
-
-    @Query("SELECT * FROM task_table")
-    fun getAllTasks(): List<Task>
+    @Query("SELECT * FROM task_table WHERE task_user = :user")
+    fun getTaskByUser(user: String?): List<Task>
 }

@@ -1,5 +1,6 @@
 package com.example.yaplacaklarlistesi.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,18 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.R
+import com.example.yaplacaklarlistesi.interfaces.OnTaskStatusChangedListener
 
 class AdapterTask(
+    val onTaskStatusChangedListener: OnTaskStatusChangedListener,
     private var taskItems: MutableList<Task>
 ) : RecyclerView.Adapter<AdapterTask.TaskViewHolder>() {
-
-    fun updateTasks(newTasks: List<Task>) {
-        taskItems.clear()
-        taskItems.addAll(newTasks)
-        notifyDataSetChanged()
-    }
-
-    private var isTaskDone = false
 
     class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val radioButton: RadioButton = view.findViewById(R.id.radioButton)
@@ -43,13 +38,10 @@ class AdapterTask(
         holder.radioButton.isChecked = taskItem.task_boolean ?: false
 
         holder.radioButton.setOnClickListener {
-            if (!isTaskDone) {
-                holder.radioButton.isChecked = true
-                isTaskDone = true
-            } else {
-                holder.radioButton.isChecked = false
-                isTaskDone = false
-            }
+            taskItem.task_boolean = !taskItem.task_boolean!!
+            taskItems[position] = taskItem
+            notifyItemChanged(position)
+            onTaskStatusChangedListener.onTaskStatusChanged(taskItem)
         }
     }
 }

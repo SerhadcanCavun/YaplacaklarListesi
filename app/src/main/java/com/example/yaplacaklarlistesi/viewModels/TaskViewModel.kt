@@ -1,4 +1,4 @@
-package com.example.yaplacaklarlistesi.ViewModel
+package com.example.yaplacaklarlistesi.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,16 +16,20 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     private val _taskAddedEvent = MutableLiveData<Boolean>()
     val taskAddedEvent: LiveData<Boolean> = _taskAddedEvent
 
-    fun loadTasks() {
+    init {
+        loadTasks()
+    }
+
+    private fun loadTasks() {
         viewModelScope.launch {
             _tasks.value = repository.getAllTasks()
         }
     }
 
-
     fun addTask(task: Task) {
         viewModelScope.launch {
             repository.insert(task)
+            loadTasks()
         }
     }
 
@@ -35,5 +39,13 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
     fun resetTaskAddedEvent() {
         _taskAddedEvent.value = false
+    }
+
+    fun updateTaskStatus(task: Task) {
+        viewModelScope.launch {
+            repository.updateTaskStatus(task)
+            //loadTasks()
+        }
+
     }
 }

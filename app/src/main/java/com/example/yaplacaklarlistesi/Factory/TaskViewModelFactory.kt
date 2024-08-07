@@ -3,7 +3,7 @@ package com.example.yaplacaklarlistesi.Factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.yaplacaklarlistesi.Repository.TaskRepository
-import com.example.yaplacaklarlistesi.ViewModel.TaskViewModel
+import com.example.yaplacaklarlistesi.viewModels.TaskViewModel
 
 class TaskViewModelFactory(private val repository: TaskRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

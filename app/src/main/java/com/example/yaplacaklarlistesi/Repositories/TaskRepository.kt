@@ -2,14 +2,27 @@ package com.example.yaplacaklarlistesi.Repository
 
 import com.example.yaplacaklarlistesi.DAO.TaskDAO
 import com.example.yaplacaklarlistesi.Model.Task
+import com.example.yaplacaklarlistesi.UserState.currentUser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class TaskRepository(private val taskDao: TaskDAO) {
+class TaskRepository(val taskDao: TaskDAO) {
 
     suspend fun getAllTasks(): List<Task> {
-        return taskDao.getAllTasks()
+        return withContext(Dispatchers.IO) {
+            taskDao.getTaskByUser(currentUser!!.loginId)
+        }
     }
 
     suspend fun insert(task: Task) {
-        taskDao.insert(task)
+        withContext(Dispatchers.IO) {
+            taskDao.insert(task)
+        }
+    }
+
+    suspend fun updateTaskStatus(task: Task) {
+        withContext(Dispatchers.IO) {
+            taskDao.update(task)
+        }
     }
 }

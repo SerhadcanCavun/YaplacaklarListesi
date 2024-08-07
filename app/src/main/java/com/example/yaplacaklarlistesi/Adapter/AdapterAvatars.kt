@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yaplacaklarlistesi.Interface.ImageStatusListener
+import com.example.yaplacaklarlistesi.interfaces.ImageStatusListener
 import com.example.yaplacaklarlistesi.Model.Avatar
 import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.UserInformationState

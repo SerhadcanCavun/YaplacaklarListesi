@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.UserState.currentUser
-import com.example.yaplacaklarlistesi.ViewModel.TaskViewModel
+import com.example.yaplacaklarlistesi.viewModels.TaskViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
