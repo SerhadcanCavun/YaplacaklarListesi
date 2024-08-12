@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.Repository.TaskRepository
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
@@ -16,20 +17,18 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     private val _taskAddedEvent = MutableLiveData<Boolean>()
     val taskAddedEvent: LiveData<Boolean> = _taskAddedEvent
 
+    private val _taskDeletedEvent = MutableLiveData<Boolean>()
+    val taskDeletedEvent: LiveData<Boolean> = _taskDeletedEvent
+
     init {
         loadTasks()
     }
 
     private fun loadTasks() {
         viewModelScope.launch {
-            _tasks.value = repository.getAllTasks()
-        }
-    }
+            val deneme =  repository.getAllTasks()
 
-    fun addTask(task: Task) {
-        viewModelScope.launch {
-            repository.insert(task)
-            loadTasks()
+            _tasks.value = deneme
         }
     }
 
@@ -41,11 +40,31 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         _taskAddedEvent.value = false
     }
 
+    fun onTaskDeleted() {
+        _taskDeletedEvent.value = true
+    }
+
+    fun resetTaskDeletedEvent() {
+        _taskDeletedEvent.value = false
+    }
+
+    fun addTask(task: Task) {
+        viewModelScope.launch {
+            repository.insert(task)
+            loadTasks()
+        }
+    }
+
     fun updateTaskStatus(task: Task) {
         viewModelScope.launch {
             repository.updateTaskStatus(task)
-            //loadTasks()
         }
+    }
 
+    fun deleteTaskStatus(task: Task) {
+        viewModelScope.launch {
+            repository.deleteTaskStatus(task)
+            loadTasks()
+        }
     }
 }

@@ -2,63 +2,74 @@ package com.example.yaplacaklarlistesi.Activities
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.media.Image
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.R
-import com.example.yaplacaklarlistesi.UserState.currentUser
 import com.example.yaplacaklarlistesi.viewModels.TaskViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Calendar
 
-class AddTaskDialogFragment : DialogFragment() {
+class TaskInformationFragment(var task: Task) : DialogFragment() {
 
     private val taskViewModel: TaskViewModel by activityViewModels()
 
+    private lateinit var taskInformation: EditText
+    private lateinit var dateInformation: TextView
+    private lateinit var saveButton1: TextView
+    private lateinit var editButton1: ImageView
+
     private var date: String? = null
     private var time: String? = null
-    private var globalTaskText: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_add_task, container, false)
+        val view = inflater.inflate(R.layout.fragment_task_information, container, false)
 
-        val editTextTask: EditText = view.findViewById(R.id.editTextTask)
-        val buttonSave: Button = view.findViewById(R.id.buttonSave)
+        taskInformation = view.findViewById(R.id.task_information)
+        dateInformation = view.findViewById(R.id.date_information)
+        saveButton1 = view.findViewById(R.id.save_button1)
+        editButton1 = view.findViewById(R.id.edit_button1)
 
-        buttonSave.setOnClickListener {
-            globalTaskText = editTextTask.text.toString()
+        taskDetails(task)
+
+        saveButton1.setOnClickListener {
+            editTaskText(task)
+        }
+
+        editButton1.setOnClickListener {
             showDatePicker()
         }
+
         return view
     }
 
-    private fun addTask() {
-        val task = Task(
-            task_user = currentUser!!.loginId,
-            task_text = globalTaskText ?: "",
-            task_boolean = false,
-            task_date = "$date $time"
-        )
+    private fun taskDetails(task: Task) {
+        taskInformation.hint = task.task_text
+        dateInformation.text = task.task_date
+    }
+
+    private fun editTaskText(task: Task) {
+        task.task_text = taskInformation.text.toString()
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
-                taskViewModel.addTask(task)
-            }
-            withContext(Dispatchers.Main) {
-                taskViewModel.onTaskAdded()
-                dismiss()
+                taskViewModel.updateTaskStatus(task)
             }
         }
     }
@@ -84,9 +95,19 @@ class AddTaskDialogFragment : DialogFragment() {
 
         val timePickerDialog = TimePickerDialog(requireContext(), { _, selectedHour, selectedMinute ->
             time = "$selectedHour:$selectedMinute"
-            addTask()
+            updateTaskDate(task)
         }, hour, minute, true)
 
         timePickerDialog.show()
+    }
+
+    private fun updateTaskDate(task: Task) {
+        task.task_date = "$date $time"
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                taskViewModel.updateTaskStatus(task)
+            }
+        }
     }
 }

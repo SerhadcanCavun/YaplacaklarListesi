@@ -17,21 +17,23 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/avatarRecyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="48dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAvatar"
         app:layout_constraintEnd_toEndOf="@+id/avatar"
         app:layout_constraintStart_toStartOf="@+id/avatar"
         app:layout_constraintTop_toBottomOf="@+id/avatar" />
 
     <Button
         android:id="@+id/buttonAvatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/Tamam"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/avatarRecyclerView"
-        app:layout_constraintStart_toStartOf="@+id/avatarRecyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/avatarRecyclerView" />
+        app:layout_constraintStart_toStartOf="@+id/avatarRecyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -87,5 +87,4 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01")
     kapt ("androidx.lifecycle:lifecycle-compiler:2.2.0-alpha01")
     implementation ("androidx.fragment:fragment-ktx:1.3.6")
-
 }

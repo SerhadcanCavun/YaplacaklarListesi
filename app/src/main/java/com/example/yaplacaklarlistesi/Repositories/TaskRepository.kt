@@ -6,7 +6,7 @@ import com.example.yaplacaklarlistesi.UserState.currentUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class TaskRepository(val taskDao: TaskDAO) {
+class TaskRepository(private val taskDao: TaskDAO) {
 
     suspend fun getAllTasks(): List<Task> {
         return withContext(Dispatchers.IO) {
@@ -23,6 +23,12 @@ class TaskRepository(val taskDao: TaskDAO) {
     suspend fun updateTaskStatus(task: Task) {
         withContext(Dispatchers.IO) {
             taskDao.update(task)
+        }
+    }
+
+    suspend fun deleteTaskStatus(task: Task) {
+        withContext(Dispatchers.IO) {
+            taskDao.delete(task)
         }
     }
 }
