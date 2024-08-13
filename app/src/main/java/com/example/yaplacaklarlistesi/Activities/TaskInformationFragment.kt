@@ -1,5 +1,6 @@
 package com.example.yaplacaklarlistesi.Activities
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.media.Image
@@ -15,6 +16,9 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.R
 import com.example.yaplacaklarlistesi.viewModels.TaskViewModel
@@ -50,6 +54,7 @@ class TaskInformationFragment(var task: Task) : DialogFragment() {
 
         saveButton1.setOnClickListener {
             editTaskText(task)
+            showDialog("Task updated successfully")
         }
 
         editButton1.setOnClickListener {
@@ -58,6 +63,7 @@ class TaskInformationFragment(var task: Task) : DialogFragment() {
 
         return view
     }
+
 
     private fun taskDetails(task: Task) {
         taskInformation.hint = task.task_text
@@ -70,6 +76,9 @@ class TaskInformationFragment(var task: Task) : DialogFragment() {
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 taskViewModel.updateTaskStatus(task)
+            }
+            withContext(Dispatchers.Main) {
+                taskViewModel.onTaskUpdated()
             }
         }
     }
@@ -109,5 +118,16 @@ class TaskInformationFragment(var task: Task) : DialogFragment() {
                 taskViewModel.updateTaskStatus(task)
             }
         }
+        taskViewModel.onTaskUpdated()
+        showDialog("Task date updated successfully")
+    }
+
+    private fun showDialog(message: String) {
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setMessage(message)
+            .setCancelable(false)
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+        val alert = dialogBuilder.create()
+        alert.show()
     }
 }

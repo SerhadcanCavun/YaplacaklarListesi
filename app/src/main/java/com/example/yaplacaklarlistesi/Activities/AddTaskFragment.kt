@@ -3,6 +3,7 @@ package com.example.yaplacaklarlistesi.Activities
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,6 +43,12 @@ class AddTaskFragment : DialogFragment() {
             showDatePicker()
         }
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog?.window?.setGravity(Gravity.BOTTOM)
     }
 
     private fun addTask() {

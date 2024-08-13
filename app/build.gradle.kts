@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -87,4 +88,6 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01")
     kapt ("androidx.lifecycle:lifecycle-compiler:2.2.0-alpha01")
     implementation ("androidx.fragment:fragment-ktx:1.3.6")
+    implementation ("androidx.navigation:navigation-fragment-ktx: 2.5.3")
+    implementation ("androidx.navigation:navigation-ui-ktx: 2.5.3")
 }

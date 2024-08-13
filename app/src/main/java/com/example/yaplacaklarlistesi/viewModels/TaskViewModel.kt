@@ -20,6 +20,9 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     private val _taskDeletedEvent = MutableLiveData<Boolean>()
     val taskDeletedEvent: LiveData<Boolean> = _taskDeletedEvent
 
+    private val _taskUpdatedEvent = MutableLiveData<Boolean>()
+    val taskUpdatedEvent: LiveData<Boolean> = _taskUpdatedEvent
+
     init {
         loadTasks()
     }
@@ -46,6 +49,14 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
     fun resetTaskDeletedEvent() {
         _taskDeletedEvent.value = false
+    }
+
+    fun onTaskUpdated() {
+        _taskUpdatedEvent.value = true
+    }
+
+    fun resetTaskUpdatedEvent() {
+        _taskUpdatedEvent.value = false
     }
 
     fun addTask(task: Task) {

@@ -37,26 +37,16 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/edit_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/edit_button"
-            android:layout_gravity="end|center"
-            android:layout_marginEnd="16dp"/>
-
 
         <ImageView
             android:id="@+id/delete_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/delete_button"
-            android:layout_marginEnd="44dp"
+            android:layout_marginEnd="16dp"
             android:layout_gravity="end|center" />
     </com.google.android.material.card.MaterialCardView>
 

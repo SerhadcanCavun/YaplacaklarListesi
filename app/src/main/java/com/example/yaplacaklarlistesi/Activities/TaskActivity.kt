@@ -3,8 +3,6 @@ package com.example.yaplacaklarlistesi.Activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -14,10 +12,10 @@ import com.example.yaplacaklarlistesi.Factory.TaskViewModelFactory
 import com.example.yaplacaklarlistesi.Model.Task
 import com.example.yaplacaklarlistesi.MyApplication
 import com.example.yaplacaklarlistesi.UserState.currentUser
-import com.example.yaplacaklarlistesi.viewModels.TaskViewModel
 import com.example.yaplacaklarlistesi.databinding.ActivityTaskBinding
 import com.example.yaplacaklarlistesi.interfaces.OnTaskSelectedListener
 import com.example.yaplacaklarlistesi.interfaces.OnTaskStatusChangedListener
+import com.example.yaplacaklarlistesi.viewModels.TaskViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -70,6 +68,13 @@ class TaskActivity : AppCompatActivity(), OnTaskStatusChangedListener, OnTaskSel
         taskViewModel.taskDeletedEvent.observe(this, Observer { event ->
             if (event) {
                 taskViewModel.resetTaskDeletedEvent()
+                taskAdapter.notifyDataSetChanged()
+            }
+        })
+
+        taskViewModel.taskUpdatedEvent.observe(this, Observer { event ->
+            if (event) {
+                taskViewModel.resetTaskUpdatedEvent()
                 taskAdapter.notifyDataSetChanged()
             }
         })
